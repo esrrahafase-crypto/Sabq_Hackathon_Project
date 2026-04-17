@@ -4,10 +4,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def get_secret(key):
-    if key in st.secrets:
-        return st.secrets[key]
-    return os.getenv(key)
+def get_secret(name: str):
+    try:
+        return st.secrets[name]
+    except:
+        return os.getenv(name)
+
 
 # Elm / Nuha API settings
 ELM_API_URL = get_secret("ELM_API_URL")
